@@ -109,6 +109,7 @@ tbody tr{cursor:pointer}
 td.up{color:var(--good)}td.dn{color:var(--bad)}.ar2{font-size:10px}
 .chart{width:100%}
 @media(max-width:900px){#hSmall{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+header.hero .kicker{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
 footer{margin-top:60px;color:var(--ink-3);font-size:13px;border-top:1px solid var(--line);padding-top:16px}
 .dir{font-size:12.5px;color:var(--ink-3)}
 @media print{.top,.ctrls,.drawer{display:none}.tablewrap{max-height:none}}
@@ -116,7 +117,7 @@ footer{margin-top:60px;color:var(--ink-3);font-size:13px;border-top:1px solid va
 </head>
 <body>
 <div class="top"><div class="in">
-  <div class="brand">TRT-15 <span>· Painel i-Gest 1º Grau</span></div>
+  <div class="brand">SC São José do Rio Preto <span>· TRT-15 · Painel i-Gest 1º Grau</span></div>
   <nav>
     <a href="#destaque">SC em destaque</a>
     <a href="#sc">Secretarias Conjuntas</a>
@@ -130,6 +131,7 @@ footer{margin-top:60px;color:var(--ink-3);font-size:13px;border-top:1px solid va
 
 <main>
 <header class="hero">
+  <div class="kicker">Secretaria Conjunta de São José do Rio Preto · TRT-15</div>
   <h1>i-Gest 1º Grau — Secretarias Conjuntas e Varas do TRT-15</h1>
   <p class="lede">Índice Nacional de Gestão de Desempenho da Justiça do Trabalho (IGEST), calculado pela Corregedoria-Geral da Justiça do Trabalho para as 153 Varas do TRT-15, organizado pelas 10 Secretarias Conjuntas e comparado com os demais Tribunais. <strong>Quanto menor o IGEST, melhor o desempenho</strong>; a 1ª faixa reúne as varas de melhor resultado do país.</p>
   <div class="meta" id="meta"></div>
@@ -304,7 +306,7 @@ footer{margin-top:60px;color:var(--ink-3);font-size:13px;border-top:1px solid va
   </div>
 </section>
 
-<footer>Painel elaborado a partir do relatório IGEST 1º Grau (CGJT) · Período <span class="p"></span> · Inspirado no painel de estatísticas da SC Piracicaba.</footer>
+<footer><strong style="color:var(--ink-2)">Desenvolvido pela Secretaria Conjunta de São José do Rio Preto — TRT da 15ª Região.</strong><br>Dados: relatórios IGEST 1º Grau da Corregedoria-Geral da Justiça do Trabalho · Período atual <span class="p"></span> · Modelo inspirado no painel de estatísticas da SC Piracicaba.</footer>
 </main>
 
 <div class="tip" id="tip" role="tooltip"></div>
@@ -349,7 +351,7 @@ document.addEventListener('mousemove',e=>{
 
 // meta
 document.getElementById('meta').innerHTML = [
-  `Período: ${meta.periodo}`,`Atualização do relatório: ${meta.atualizacao}`,`153 varas · 10 Secretarias Conjuntas`,`Série histórica: 18 períodos (desde Jul/21–Jun/22)`,`Fonte: CGJT`].map(s=>`<span class="pill">${s}</span>`).join('');
+  `Período: ${meta.periodo}`,`Atualização do relatório: ${meta.atualizacao}`,`153 varas · 10 Secretarias Conjuntas`,`Série histórica: 18 períodos (desde Jul/21–Jun/22)`,`Fonte: CGJT`,`Desenvolvido pela SC São José do Rio Preto`].map(s=>`<span class="pill">${s}</span>`).join('');
 document.querySelectorAll('.p').forEach(e=>e.textContent=meta.periodo);
 document.querySelectorAll('.a').forEach(e=>e.textContent=meta.atualizacao);
 document.getElementById('qq').textContent = meta.q.map(n3).join(' · ');
