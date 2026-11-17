@@ -111,6 +111,7 @@ td.up{color:var(--good)}td.dn{color:var(--bad)}.ar2{font-size:10px}
 .chart{width:100%}
 @media(max-width:900px){#hSmall{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
 header.hero .kicker{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.cmp{margin-top:8px;display:grid;gap:8px}.cmp-row .cmp-lab{font-size:12.5px;color:var(--ink-2)}.cmp-row .cmp-val{font-size:17px;font-weight:650;margin-top:1px}
 footer{margin-top:60px;color:var(--ink-3);font-size:13px;border-top:1px solid var(--line);padding-top:16px}
 .dir{font-size:12.5px;color:var(--ink-3)}
 @media print{.top,.ctrls,.drawer{display:none}.tablewrap{max-height:none}}
@@ -134,7 +135,7 @@ footer{margin-top:60px;color:var(--ink-3);font-size:13px;border-top:1px solid va
 <header class="hero">
   <div class="kicker">Secretaria Conjunta de São José do Rio Preto · TRT-15</div>
   <h1>i-Gest 1º Grau — Secretarias Conjuntas e Varas do TRT-15</h1>
-  <p class="lede">Índice Nacional de Gestão de Desempenho da Justiça do Trabalho (IGEST), calculado pela Corregedoria-Geral da Justiça do Trabalho para as 153 Varas do TRT-15, organizado pelas 10 Secretarias Conjuntas e comparado com os demais Tribunais. <strong>O IGEST vai de 0 a 1, e os menores valores ocupam as primeiras colocações</strong>; a 1ª faixa reúne as varas com os menores índices do país.</p>
+  <p class="lede">Índice Nacional de Gestão de Desempenho da Justiça do Trabalho (IGEST), calculado pela Corregedoria-Geral da Justiça do Trabalho para as 153 Varas do TRT-15, organizado pelas 10 Secretarias Conjuntas e comparado com os demais Tribunais. <strong>O IGEST vai de 0 a 1, e quanto menor o valor, melhor o desempenho</strong>.</p>
   <div class="meta" id="meta"></div>
 </header>
 
@@ -148,12 +149,12 @@ footer{margin-top:60px;color:var(--ink-3);font-size:13px;border-top:1px solid va
   <div class="grid g2" style="margin-top:16px">
     <div class="card">
       <h3 style="margin:0 0 2px;font-size:16px">Mesoindicadores — média da SC</h3>
-      <p class="dir" style="margin:0 0 12px">Escala 0 a 1 · menores valores = primeiras colocações · traço = média do TRT-15</p>
+      <p class="dir" style="margin:0 0 12px">Escala de 0 a 1 · traço = média do TRT-15</p>
       <div id="destMesos"></div>
     </div>
     <div class="card">
       <h3 style="margin:0 0 2px;font-size:16px">Varas da Secretaria</h3>
-      <p class="dir" style="margin:0 0 12px">IGEST de cada vara · traço = mediana nacional (<span id="medNat"></span>)</p>
+      <p class="dir" style="margin:0 0 12px">IGEST de cada vara · traço = média do TRT-15 (<span id="medNat"></span>)</p>
       <div id="destVaras"></div>
     </div>
   </div>
@@ -161,18 +162,12 @@ footer{margin-top:60px;color:var(--ink-3);font-size:13px;border-top:1px solid va
 
 <section id="sc">
   <h2>Secretarias Conjuntas</h2>
-  <p class="sub">IGEST médio das varas de cada Secretaria Conjunta, com a distribuição das varas pelas quatro faixas nacionais e a média de cada mesoindicador. Clique no cabeçalho para ordenar.</p>
-  <div class="grid g2">
+  <p class="sub">IGEST médio das varas de cada Secretaria Conjunta, e a média de cada mesoindicador. Clique no cabeçalho para ordenar.</p>
+  <div class="grid">
     <div class="card">
       <h3 style="margin:0 0 2px;font-size:16px">IGEST médio por Secretaria Conjunta</h3>
-      <p class="dir" style="margin:0 0 12px">Menores valores = primeiras colocações · traço = média do TRT-15 (<span id="avg15"></span>)</p>
+      <p class="dir" style="margin:0 0 12px">Escala de 0 a 1 · traço = média do TRT-15 (<span id="avg15"></span>)</p>
       <div id="scBars"></div>
-    </div>
-    <div class="card">
-      <h3 style="margin:0 0 2px;font-size:16px">Varas por faixa do IGEST</h3>
-      <p class="dir" style="margin:0 0 12px">Quantidade de varas de cada SC em cada faixa nacional</p>
-      <div id="scStacks"></div>
-      <div class="legend" id="fxLegend"></div>
     </div>
   </div>
   <div class="tablewrap" style="margin-top:16px;max-height:none"><table id="scTable"></table></div>
@@ -183,7 +178,7 @@ footer{margin-top:60px;color:var(--ink-3);font-size:13px;border-top:1px solid va
 
 <section id="mesos">
   <h2>Mesoindicadores</h2>
-  <p class="sub">O IGEST é a média de cinco mesoindicadores, cada um formado por microindicadores (veja a composição em "Sobre os dados"). Escolha um mesoindicador e, se quiser, uma vara da Secretaria Conjunta em destaque. Escala de 0 a 1: os menores valores ocupam as primeiras colocações.</p>
+  <p class="sub">O IGEST é a média de cinco mesoindicadores, cada um formado por microindicadores (veja a composição em "Sobre os dados"). Escolha um mesoindicador e, se quiser, uma vara da Secretaria Conjunta em destaque. Escala de 0 a 1.</p>
   <div class="ctrls">
     <div class="seg" role="group" aria-label="Mesoindicador" id="mesoSeg"></div>
     <select id="mesoVara" aria-label="Vara da Secretaria Conjunta em destaque"></select>
@@ -197,7 +192,7 @@ footer{margin-top:60px;color:var(--ink-3);font-size:13px;border-top:1px solid va
     </div>
     <div class="card">
       <h3 style="margin:0 0 2px;font-size:16px" id="mesoScVarasTitle"></h3>
-      <p class="dir" style="margin:0 0 12px">Cor = faixa nacional · traço = média do TRT-15 · clique numa vara para selecioná-la</p>
+      <p class="dir" style="margin:0 0 12px">Traço = média do TRT-15 · clique numa vara para selecioná-la</p>
       <div id="mesoScVaras"></div>
     </div>
   </div>
@@ -230,16 +225,10 @@ footer{margin-top:60px;color:var(--ink-3);font-size:13px;border-top:1px solid va
   <div class="grid g4" id="hKpis"></div>
   <div class="card" style="margin-top:16px">
     <h3 style="margin:0 0 2px;font-size:16px" id="hMainTitle"></h3>
-    <p class="dir" style="margin:0 0 8px">Menores valores = primeiras colocações · passe o cursor sobre uma linha para identificá-la, ou em qualquer ponto do gráfico para ver todos os valores do período</p>
+    <p class="dir" style="margin:0 0 8px">Escala de 0 a 1 · passe o cursor sobre uma linha para identificá-la, ou em qualquer ponto do gráfico para ver todos os valores do período</p>
     <div id="hMain" class="chart"></div>
     <div class="legend" id="hMainLeg"></div>
   </div>
-  <div class="card" style="margin-top:16px">
-      <h3 style="margin:0 0 2px;font-size:16px" id="hFxTitle"></h3>
-      <p class="dir" style="margin:0 0 8px" id="hFxSub"></p>
-      <div id="hFx" class="chart"></div>
-      <div class="legend" id="fxLegend3"></div>
-    </div>
   <div class="card" style="margin-top:16px">
     <h3 style="margin:0 0 2px;font-size:16px">IGEST e mesoindicadores ao longo do tempo</h3>
     <p class="dir" style="margin:0 0 12px" id="hSmallSub"></p>
@@ -260,7 +249,7 @@ footer{margin-top:60px;color:var(--ink-3);font-size:13px;border-top:1px solid va
 
 <section id="varas">
   <h2>Varas do Trabalho</h2>
-  <p class="sub">As 153 varas do TRT-15, com IGEST, mesoindicadores e faixas. As varas da Secretaria em destaque aparecem marcadas. Clique numa linha para ver todos os indicadores e variáveis da vara.</p>
+  <p class="sub">As 153 varas do TRT-15, com IGEST e mesoindicadores. As varas da Secretaria em destaque aparecem marcadas. Clique numa linha para ver todos os indicadores e variáveis da vara.</p>
   <div class="ctrls">
     <select id="fSc" aria-label="Filtrar por Secretaria Conjunta"><option value="">Todas as Secretarias Conjuntas</option></select>
     <input type="search" id="fQ" placeholder="Buscar vara ou cidade" aria-label="Buscar vara ou cidade">
@@ -277,14 +266,14 @@ footer{margin-top:60px;color:var(--ink-3);font-size:13px;border-top:1px solid va
 
 <section id="trts">
   <h2>Comparativo entre Tribunais</h2>
-  <p class="sub">IGEST médio das varas de cada TRT (1.573 varas no país) e a proporção de varas em cada faixa nacional. O TRT-15 está destacado.</p>
-  <div class="grid g2">
-    <div class="card"><h3 style="margin:0 0 2px;font-size:16px">IGEST médio por TRT</h3><p class="dir" style="margin:0 0 12px">Menores valores = primeiras colocações · traço = média nacional (<span id="avgNat"></span>)</p><div id="trtBars"></div></div>
-    <div class="card"><h3 style="margin:0 0 2px;font-size:16px">Proporção de varas por faixa</h3><p class="dir" style="margin:0 0 12px">Mesma ordem do gráfico ao lado</p><div id="trtStacks"></div><div class="legend" id="fxLegend2"></div></div>
+  <p class="sub">IGEST médio das varas de cada TRT (1.573 varas no país). O TRT-15 está destacado.</p>
+  <div class="grid">
+    <div class="card"><h3 style="margin:0 0 2px;font-size:16px">IGEST médio por TRT</h3><p class="dir" style="margin:0 0 12px">Escala de 0 a 1 · traço = média nacional (<span id="avgNat"></span>)</p><div id="trtBars"></div></div>
+    
   </div>
   <div class="card" style="margin-top:16px">
     <h3 style="margin:0 0 2px;font-size:16px">TRT-15 × média nacional por mesoindicador</h3>
-    <p class="dir" style="margin:0 0 12px">Média das varas · menores valores = primeiras colocações</p>
+    <p class="dir" style="margin:0 0 12px">Média das varas · escala de 0 a 1</p>
     <div class="tablewrap" style="max-height:none;border:0"><table id="mesoCmp"></table></div>
   </div>
 </section>
@@ -293,15 +282,16 @@ footer{margin-top:60px;color:var(--ink-3);font-size:13px;border-top:1px solid va
   <h2>Sobre os dados</h2>
   <div class="card">
     <ul class="notes">
-      <li><strong>Fonte:</strong> relatório "IGEST — 1º Grau" da Corregedoria-Geral da Justiça do Trabalho, período de referência <span class="p"></span>, atualizado em <span class="a"></span>. Os valores das variáveis, dos indicadores brutos e parametrizados e as faixas foram extraídos do relatório.</li>
-      <li><strong>Como ler:</strong> cada um dos 12 microindicadores é convertido numa nota de 0 a 1 pelo boxplot nacional (0 = menor índice, 1 = maior índice). Os microindicadores formam 5 mesoindicadores, e o IGEST é a média dos cinco (peso 0,2 cada). <strong>Os menores valores correspondem às primeiras colocações.</strong></li>
-      <li><strong>Faixas:</strong> o relatório traz só a faixa (1ª a 4ª), não o número. O valor numérico do IGEST e dos mesoindicadores foi calculado aqui com os pesos oficiais sobre os indicadores parametrizados. As faixas correspondem aos quartis nacionais das 1.573 varas (limites do IGEST: <span id="qq"></span>). O cálculo reproduz 100% das faixas oficiais do IGEST.</li>
+      <li><strong>Fonte:</strong> relatório "IGEST — 1º Grau" da Corregedoria-Geral da Justiça do Trabalho, período de referência <span class="p"></span>, atualizado em <span class="a"></span>. Os valores das variáveis, dos indicadores brutos e parametrizados foram extraídos do relatório.</li>
+      <li><strong>Como ler:</strong> cada um dos 12 microindicadores é convertido numa nota de 0 a 1 pelo boxplot nacional (0 = menor índice, 1 = maior índice). Os microindicadores formam 5 mesoindicadores, e o IGEST é a média dos cinco (peso 0,2 cada). <strong>Quanto menor o valor, melhor o desempenho.</strong></li>
+      <li><strong>Valor do IGEST:</strong> nos relatórios mais recentes o IGEST e os mesoindicadores não vêm em número. Eles foram calculados aqui com os pesos oficiais sobre os indicadores parametrizados, e o cálculo coincide com os valores oficiais em todos os períodos em que a Corregedoria os publica.</li>
       <li><strong>Secretarias Conjuntas:</strong> composição por município conforme a página "Coordenadorias e Supervisões das Secretarias Conjuntas" do TRT-15. O IGEST da SC é a média simples das suas varas, e é esse valor que define a ordem das SCs.</li>
       <li><strong>Série histórica:</strong> 18 relatórios trimestrais, de Jul/21–Jun/22 a Out/25–Set/26, cada um cobrindo 12 meses. Até Out/22–Set/23 o IGEST usava a metodologia anterior (13 microindicadores, com prazos de liquidação e execução e taxa de execução). A partir de Jan/23–Dez/23 vale o IGEST 3.0 (12 microindicadores, com cumprimento de sentença e taxa de extinção). Os cinco mesoindicadores e o IGEST mantêm os mesmos nomes e a mesma escala, mas a mudança aparece nos gráficos como uma linha vertical. Os indicadores brutos da tabela histórica foram alinhados pelo significado; prazos, congestionamento e pendentes da fase de execução/cumprimento não são idênticos entre as duas metodologias.</li>
-      <li><strong>Valores históricos:</strong> nos relatórios até Jul/24–Jun/25 o IGEST e os mesoindicadores vêm em número na planilha. A partir de Out/24–Set/25 a planilha traz só a faixa, e o valor foi calculado pelos pesos oficiais. Nos períodos com valor oficial, o cálculo coincide em todas as varas do país. As faixas de todos os períodos são os quartis nacionais do IGEST.</li>
+      <li><strong>Valores históricos:</strong> nos relatórios até Jul/24–Jun/25 o IGEST e os mesoindicadores vêm em número na planilha. A partir de Out/24–Set/25 o valor foi calculado pelos pesos oficiais. Nos períodos com valor oficial, o cálculo coincide em todas as varas do país.</li>
+      <li><strong>Evolução e involução:</strong> o relatório atual é comparado de duas formas: com o relatório imediatamente anterior (um trimestre antes) e com o relatório de um ano antes (mesmo período do ano anterior). Evolução indica redução do índice; involução indica aumento.</li>
       <li><strong>Lacuna:</strong> o arquivo do período Out/23–Set/24 contém apenas as varas do TRT-14, então esse ponto aparece sem dados nos gráficos.</li>
       <li><strong>Composição das SCs no histórico:</strong> a série das Secretarias Conjuntas usa a composição atual em todos os períodos. A VT de Rancharia (extinta) não entra; a 5ª VT de Jundiaí aparece a partir de Out/22–Set/23.</li>
-      <li><strong>Ordenação:</strong> gráficos, listas e tabelas aparecem ordenados pelo valor do índice, do menor para o maior, sem numeração de colocação. Nas tabelas, a ordem pode ser alterada clicando no cabeçalho de cada coluna.</li>
+      <li><strong>Ordenação:</strong> gráficos, listas e tabelas aparecem ordenados pelo valor do índice, do menor para o maior. Nas tabelas, a ordem pode ser alterada clicando no cabeçalho de cada coluna.</li>
     </ul>
     <h3 style="font-size:15px;margin:18px 0 6px">Composição do índice</h3>
     <div class="tablewrap" style="max-height:none"><table id="glos"></table></div>
@@ -332,8 +322,8 @@ const VARS = {V01:'Idade média do pendente de julgamento',V02:'Pendentes de bai
 
 const nf = (x,d=0)=> x==null?'—':x.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d});
 const n3 = x=> nf(x,3);
-const chip = f=> `<span class="chip c${f}" title="${f}ª faixa">${f}ª</span>`;
-const faixaOf = (x,q)=> 1+(x>q[0])+(x>q[1])+(x>q[2]);
+const chip = f=> '';
+const faixaOf = (x,q)=> 0;
 const avg15 = varas.reduce((a,v)=>a+v.ig,0)/varas.length;
 const avg15m = [0,1,2,3,4].map(i=>varas.reduce((a,v)=>a+v.m[i],0)/varas.length);
 const esc = s=> String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -356,12 +346,9 @@ document.getElementById('meta').innerHTML = [
   `Período: ${meta.periodo}`,`Atualização do relatório: ${meta.atualizacao}`,`153 varas · 10 Secretarias Conjuntas`,`Série histórica: 18 períodos (desde Jul/21–Jun/22)`,`Fonte: CGJT`,`Desenvolvido pela SC São José do Rio Preto`].map(s=>`<span class="pill">${s}</span>`).join('');
 document.querySelectorAll('.p').forEach(e=>e.textContent=meta.periodo);
 document.querySelectorAll('.a').forEach(e=>e.textContent=meta.atualizacao);
-document.getElementById('qq').textContent = meta.q.map(n3).join(' · ');
 document.getElementById('avg15').textContent = n3(avg15);
 document.getElementById('avgNat').textContent = n3(meta.nat_mean);
-document.getElementById('medNat').textContent = n3(meta.q[1]);
-const fxLeg = ['1ª faixa (menores índices)','2ª faixa','3ª faixa','4ª faixa (maiores índices)'].map((l,i)=>`<span><i class="c${i+1}"></i>${l}</span>`).join('');
-document.getElementById('fxLegend').innerHTML = fxLeg; document.getElementById('fxLegend2').innerHTML = fxLeg;
+document.getElementById('medNat').textContent = n3(avg15);
 
 // highlight state
 let HL = 'São José do Rio Preto';
@@ -379,14 +366,6 @@ function barList(el, rows, max, ref, refLabel){
     <div class="track"><div class="b" style="width:${(r.v/max*100).toFixed(2)}%"></div>${ref!=null?`<div class="tick" style="left:${(ref/max*100).toFixed(2)}%"></div>`:''}</div>
     <div class="v">${n3(r.v)}</div></div>`).join('');
 }
-function stackList(el, rows){
-  el.innerHTML = rows.map(r=>{
-    const tot = r.fx.reduce((a,b)=>a+b,0);
-    const segs = r.fx.map((c,i)=> c?`<span class="c${i+1}" style="flex:${c}"></span>`:'').join('');
-    const tipTxt = `<b>${esc(r.label)}</b><br>`+r.fx.map((c,i)=>`${i+1}ª faixa: ${c} (${nf(c/tot*100,0)}%)`).join('<br>');
-    return `<div class="bar-row ${r.hl?'hl':''}" data-tip="${esc(tipTxt)}"><div class="nm">${esc(r.label)}</div><div class="stack">${segs}</div><div class="v">${r.fx.join('·')}</div></div>`;
-  }).join('');
-}
 
 function renderDestaque(){
   const s = scs.find(x=>x.sc===HL);
@@ -396,30 +375,28 @@ function renderDestaque(){
   const best = vs[0], worst = vs[vs.length-1];
   document.getElementById('kpis').innerHTML = `
     <div class="card kpi"><div class="lab">IGEST médio da SC</div><div class="val">${n3(s.ig)}</div><div class="note">${diff<0?'▼':'▲'} ${n3(Math.abs(diff))} ${diff<0?'abaixo':'acima'} da média do TRT-15 (${n3(avg15)})</div></div>
-    <div class="card kpi"><div class="lab">SC em 12 meses</div><div class="val" style="font-size:22px;margin-top:10px">${deltaTxt(s.ig, HIST.sc[HL].ig[lastIdx(HIST.sc[HL].ig)-4])}</div><div class="note">frente a ${HP[lastIdx(HIST.sc[HL].ig)-4].lab} (${n3(HIST.sc[HL].ig[lastIdx(HIST.sc[HL].ig)-4])})</div></div>
-    <div class="card kpi"><div class="lab">Varas por faixa</div><div class="val" style="display:flex;gap:6px;flex-wrap:wrap;font-size:20px;margin-top:10px">${s.fx.map((c,i)=>`<span class="chip c${i+1}" style="height:30px;min-width:52px;font-size:14px">${i+1}ª: ${c}</span>`).join('')}</div><div class="note">Faixas nacionais do IGEST</div></div>
+    <div class="card kpi"><div class="lab">SC · evolução / involução do IGEST</div>${cmpLines(HIST.sc[HL].ig)}</div>
+    <div class="card kpi"><div class="lab">Referências</div><div style="font-size:15px;margin-top:8px">Média do TRT-15: <b>${n3(avg15)}</b></div><div style="font-size:15px;margin-top:4px">Média nacional: <b>${n3(meta.nat_mean)}</b></div></div>
     <div class="card kpi"><div class="lab">Menor e maior IGEST da SC</div><div style="font-size:15px;font-weight:600;margin-top:8px">${esc(best.nome)} <span class="muted" style="font-weight:400">${n3(best.ig)}</span></div><div style="font-size:15px;font-weight:600;margin-top:4px">${esc(worst.nome)} <span class="muted" style="font-weight:400">${n3(worst.ig)}</span></div></div>`;
   document.getElementById('destMesos').innerHTML = MESO.map((m,i)=>{
     const v = s.m[i], r = avg15m[i], f = faixaOf(v,meta.qm[i]);
-    return `<div class="meso-row" data-tip="${esc(`<b>${m}</b><br>SC: ${n3(v)}<br>TRT-15: ${n3(r)}<br>Nacional: ${n3(meta.nat_m[i])}<br>Faixa equivalente: ${f}ª`)}"><div>${m}</div><div class="track"><div class="b" style="width:${v*100}%;background:var(--bar-hl)"></div><div class="tick" style="left:${r*100}%"></div></div><div style="text-align:right;font-variant-numeric:tabular-nums">${n3(v)}</div><div>${chip(f)}</div></div>`;
+    return `<div class="meso-row" data-tip="${esc(`<b>${m}</b><br>SC: ${n3(v)}<br>TRT-15: ${n3(r)}<br>Nacional: ${n3(meta.nat_m[i])}`)}"><div>${m}</div><div class="track"><div class="b" style="width:${v*100}%;background:var(--bar-hl)"></div><div class="tick" style="left:${r*100}%"></div></div><div style="text-align:right;font-variant-numeric:tabular-nums">${n3(v)}</div><div>${chip(f)}</div></div>`;
   }).join('') + `<div class="meso-row" style="border-top:1px solid var(--line);margin-top:6px;padding-top:8px;font-weight:650"><div>IGEST</div><div class="track"><div class="b" style="width:${s.ig*100}%;background:var(--bar-hl)"></div><div class="tick" style="left:${avg15*100}%"></div></div><div style="text-align:right">${n3(s.ig)}</div><div>${chip(faixaOf(s.ig,meta.q))}</div></div>`;
   const el = document.getElementById('destVaras');
-  const max = Math.max(...vs.map(v=>v.ig), meta.q[1])*1.05;
-  el.innerHTML = vs.map(v=>`<div class="bar-row" data-tip="${esc(`<b>${v.nome}</b><br>IGEST ${n3(v.ig)} · ${v.f[5]}ª faixa<br>Média da SC: ${n3(scs.find(x=>x.sc===v.sc).ig)} · TRT-15: ${n3(avg15)}`)}" data-id="${v.id}" style="cursor:pointer"><div class="nm">${esc(v.nome)}</div><div class="track"><div class="b" style="width:${v.ig/max*100}%;background:var(--f${v.f[5]})"></div><div class="tick" style="left:${meta.q[1]/max*100}%"></div></div><div class="v">${n3(v.ig)}</div></div>`).join('');
+  const max = Math.max(...vs.map(v=>v.ig), avg15)*1.05;
+  el.innerHTML = vs.map(v=>`<div class="bar-row" data-tip="${esc(`<b>${v.nome}</b><br>IGEST ${n3(v.ig)}<br>Média da SC: ${n3(scs.find(x=>x.sc===v.sc).ig)} · TRT-15: ${n3(avg15)}`)}" data-id="${v.id}" style="cursor:pointer"><div class="nm">${esc(v.nome)}</div><div class="track"><div class="b" style="width:${v.ig/max*100}%;background:var(--bar);--x:var(--f${v.f[5]})"></div><div class="tick" style="left:${avg15/max*100}%"></div></div><div class="v">${n3(v.ig)}</div></div>`).join('');
   el.querySelectorAll('[data-id]').forEach(r=>r.onclick=()=>openVara(r.dataset.id));
 }
 
 function renderSC(){
   const max = Math.max(...scs.map(s=>s.ig))*1.08;
-  barList(document.getElementById('scBars'), scs.map(s=>({label:s.sc,v:s.ig,hl:s.sc===HL,tip:`<b>SC ${s.sc}</b><br>IGEST médio ${n3(s.ig)} · mediana ${n3(s.igmed)}<br>${s.n} varas`})), max, avg15);
-  stackList(document.getElementById('scStacks'), scs.map(s=>({label:s.sc,fx:s.fx,hl:s.sc===HL})));
+  barList(document.getElementById('scBars'), scs.map(s=>({label:s.sc,v:s.ig,hl:s.sc===HL,tip:`<b>SC ${s.sc}</b><br>IGEST médio ${n3(s.ig)}<br>${s.n} varas`})), max, avg15);
   // heat-ish table
-  const cols = [['sc','Secretaria Conjunta','l'],['n','Varas'],['ig','IGEST médio'],['igmed','IGEST mediano']].concat(MESO.map((m,i)=>['m'+i,m])).concat([['fx','1ª · 2ª · 3ª · 4ª']]);
+  const cols = [['sc','Secretaria Conjunta','l'],['n','Varas'],['ig','IGEST médio']].concat(MESO.map((m,i)=>['m'+i,m]));
   sortableTable('scTable', cols, scs.map(s=>({...s,m0:s.m[0],m1:s.m[1],m2:s.m[2],m3:s.m[3],m4:s.m[4]})), (s,k)=>{
     if(k==='sc') return `<b>${esc(s.sc)}</b>`;
-    if(k==='ig'||k==='igmed') return n3(s[k]);
-    if(k[0]==='m'&&k.length===2){const i=+k[1];const f=faixaOf(s.m[i],meta.qm[i]);return `${n3(s.m[i])} ${chip(f)}`;}
-    if(k==='fx') return s.fx.map((c,i)=>`<span class="chip c${i+1}" style="min-width:26px">${c}</span>`).join(' ');
+    if(k==='ig') return n3(s[k]);
+    if(k[0]==='m'&&k.length===2){const i=+k[1];return n3(s.m[i]);}
     return s[k];
   }, s=>s.sc===HL, 'ig');
   const rc = [['sc','Secretaria Conjunta','l'],['I01','Idade média pend. julg. (anos)'],['I02','Pendentes'],['I03','Conclusos prazo vencido %'],['I04','Prazo médio conhec. (dias)'],['I05','Prazo médio cump. sent. (dias)'],['I06','Conciliação %'],['I07','Solução %'],['I12','Extinção %'],['I08','Congest. conhec. %'],['I09','Congest. cump. sent. %'],['I10','Produt. por servidor'],['I11','Pend. por servidor']];
@@ -428,8 +405,8 @@ function renderSC(){
 
 let VIEW='meso';
 function vCols(){
-  const base = [['nome','Vara','l'],['sc','Secretaria Conjunta','l'],['fcn','Casos novos (faixa)','l']];
-  if(VIEW==='meso') return base.concat([['ig','IGEST'],['f5','Faixa']]).concat(MESO.map((m,i)=>['m'+i,m]));
+  const base = [['nome','Vara','l'],['sc','Secretaria Conjunta','l'],['fcn','Casos novos (intervalo)','l']];
+  if(VIEW==='meso') return base.concat([['ig','IGEST']]).concat(MESO.map((m,i)=>['m'+i,m]));
   if(VIEW==='raw') return base.concat([['ig','IGEST']]).concat(IND_ORDER.map(k=>[k,k+' '+IND[k][0]]));
   return base.concat(Object.keys(VARS).map(k=>[k,k+' '+VARS[k]]));
 }
@@ -437,7 +414,6 @@ function vCell(v,k){
   if(k==='nome') return `<b>${esc(v.nome)}</b>`;
   if(k==='sc'||k==='fcn') return esc(v[k]);
   if(k==='ig') return n3(v.ig);
-  if(k==='f5') return chip(v.f[5]);
   if(/^m\d$/.test(k)){const i=+k[1];return `${n3(v.m[i])} ${chip(v.f[i])}`;}
   if(k[0]==='I') return nf(v[k], k==='I02'?0:2);
   if(k[0]==='V') return nf(v[k], ['V01','V04','V05'].includes(k)?2:0);
@@ -467,8 +443,7 @@ function sortableTable(id, cols, rows, cell, isHL, defKey, defDir=1, onClick){
 function renderTRT(){
   const rows = trts.slice().sort((a,b)=>a.igest-b.igest);
   const max = Math.max(...rows.map(r=>r.igest))*1.08;
-  barList(document.getElementById('trtBars'), rows.map((r,i)=>({label:`TRT-${r.trt} (${r.uf})`,v:r.igest,hl:r.trt===15,tip:`<b>TRT-${r.trt}</b> · ${r.n} varas<br>IGEST médio ${n3(r.igest)} · mediana ${n3(r.med)}`})), max, meta.nat_mean);
-  stackList(document.getElementById('trtStacks'), rows.map((r,i)=>({label:`TRT-${r.trt} (${r.uf})`,fx:r.fx,hl:r.trt===15})));
+  barList(document.getElementById('trtBars'), rows.map((r,i)=>({label:`TRT-${r.trt} (${r.uf})`,v:r.igest,hl:r.trt===15,tip:`<b>TRT-${r.trt}</b> · ${r.n} varas<br>IGEST médio ${n3(r.igest)}`})), max, meta.nat_mean);
   const t15 = trts.find(t=>t.trt===15);
   const rk = i=> 1+trts.filter(t=>t.mesos[i]<t15.mesos[i]).length;
   document.getElementById('mesoCmp').innerHTML = `<thead><tr><th class="l">Mesoindicador</th><th>TRT-15</th><th>Média nacional</th><th>Diferença</th></tr></thead><tbody>${MESO.map((m,i)=>{const d=t15.mesos[i]-meta.nat_m[i];return `<tr style="cursor:default"><td class="l">${m}</td><td>${n3(t15.mesos[i])}</td><td>${n3(meta.nat_m[i])}</td><td>${d>0?'+':''}${n3(d)}</td></tr>`}).join('')}<tr style="cursor:default;font-weight:650"><td class="l">IGEST</td><td>${n3(t15.igest)}</td><td>${n3(meta.nat_mean)}</td><td>${t15.igest-meta.nat_mean>0?'+':''}${n3(t15.igest-meta.nat_mean)}</td></tr></tbody>`;
@@ -496,7 +471,7 @@ function openVara(id){
     <div id="dHist" class="chart"></div>
     <div class="tablewrap" style="max-height:260px;margin:10px 0 18px"><table id="dHistTab"></table></div>
     <h4 style="margin:0 0 8px">Mesoindicadores — período atual</h4>
-    ${MESO.map((m,i)=>`<div class="meso-row"><div>${m}</div><div class="track"><div class="b" style="width:${v.m[i]*100}%;background:var(--f${v.f[i]})"></div><div class="tick" style="left:${avg15m[i]*100}%"></div></div><div style="text-align:right">${n3(v.m[i])}</div><div>${chip(v.f[i])}</div></div>`).join('')}
+    ${MESO.map((m,i)=>`<div class="meso-row"><div>${m}</div><div class="track"><div class="b" style="width:${v.m[i]*100}%;background:var(--bar);--x:var(--f${v.f[i]})"></div><div class="tick" style="left:${avg15m[i]*100}%"></div></div><div style="text-align:right">${n3(v.m[i])}</div><div>${chip(v.f[i])}</div></div>`).join('')}
     <p class="dir">Traço = média do TRT-15</p>
     <h4 style="margin:18px 0 8px">Indicadores</h4>
     <div class="tablewrap" style="max-height:none"><table><thead><tr><th class="l">Indicador</th><th>Meso</th><th>Bruto</th><th>Nota 0–1</th><th>Polaridade</th></tr></thead><tbody>${indRows}</tbody></table></div>
@@ -507,9 +482,9 @@ function openVara(id){
 
 // CSV
 function buildCSV(){
-  const head = ['Vara','Orgao','Secretaria Conjunta','Faixa casos novos','IGEST','Faixa IGEST'].concat(MESO.flatMap(m=>[m,'Faixa '+m])).concat(IND_ORDER.map(k=>k+' '+IND[k][0])).concat(IND_ORDER.map(k=>'P'+k+' (0-1)')).concat(Object.keys(VARS).map(k=>k+' '+VARS[k]));
+  const head = ['Vara','Orgao','Secretaria Conjunta','Casos novos (intervalo)','IGEST'].concat(MESO).concat(IND_ORDER.map(k=>k+' '+IND[k][0])).concat(IND_ORDER.map(k=>'P'+k+' (0-1)')).concat(Object.keys(VARS).map(k=>k+' '+VARS[k]));
   const num = x=> String(x).replace('.',',');
-  const lines = varas.slice().sort((a,b)=>a.ig-b.ig).map(v=>[v.nome,v.id,v.sc,v.fcn,num(v.ig),v.f[5]].concat(MESO.flatMap((m,i)=>[num(v.m[i]),v.f[i]])).concat(IND_ORDER.map(k=>num(v[k]))).concat(IND_ORDER.map(k=>num(v['P'+k]))).concat(Object.keys(VARS).map(k=>num(v[k]))));
+  const lines = varas.slice().sort((a,b)=>a.ig-b.ig).map(v=>[v.nome,v.id,v.sc,v.fcn,num(v.ig)].concat(MESO.map((m,i)=>num(v.m[i]))).concat(IND_ORDER.map(k=>num(v[k]))).concat(IND_ORDER.map(k=>num(v['P'+k]))).concat(Object.keys(VARS).map(k=>num(v[k]))));
   return [head].concat(lines).map(r=>r.map(c=>`"${String(c).replace(/"/g,'""')}"`).join(';')).join('\r\n');
 }
 document.getElementById('csvCopy').onclick=async(e)=>{
@@ -608,25 +583,6 @@ function lineChart(el, o){
 function niceTicks(lo,hi,n){ const span=hi-lo; const step0=span/n; const mag=Math.pow(10,Math.floor(Math.log10(step0))); const step=[1,2,2.5,5,10].map(k=>k*mag).find(k=>span/k<=n)||mag*10; const out=[]; for(let t=Math.ceil(lo/step)*step;t<=hi+1e-9;t+=step) out.push(+t.toFixed(6)); return out; }
 const legItem = (c,l,dash)=> `<span><i style="background:${dash?'transparent':c};${dash?`border-top:2px ${dash} ${c};height:0;border-radius:0;vertical-align:3px`:''}"></i>${esc(l)}</span>`;
 
-// ---- stacked faixa bars over time ----
-function fxChart(el, fxs){
-  const W = Math.max(320, el.clientWidth), H = 240, m={t:10,r:10,b:46,l:34};
-  const iw=W-m.l-m.r, ih=H-m.t-m.b, bw = iw/NP;
-  let s=`<svg viewBox="0 0 ${W} ${H}" width="100%" height="${H}" style="display:block">`;
-  [0,25,50,75,100].forEach(t=>{const yy=m.t+ih*(1-t/100); s+=`<line x1="${m.l}" x2="${W-m.r}" y1="${yy}" y2="${yy}" stroke="${css('--line')}"/><text x="${m.l-6}" y="${yy+4}" text-anchor="end" font-size="11" fill="${css('--ink-3')}">${t}%</text>`;});
-  fxs.forEach((f,i)=>{
-    const x0=m.l+i*bw+2, w=Math.max(2,bw-4);
-    if(!f){ return; }
-    const tot=f.reduce((a,b)=>a+b,0); let acc=0;
-    const tipTxt=`<b>${HP[i].lab}</b><br>`+f.map((c,k)=>`${k+1}ª faixa: ${c} (${nf(c/tot*100,0)}%)`).join('<br>');
-    f.forEach((c,k)=>{ if(!c) return; const h=ih*c/tot; const yy=m.t+ih*(1-(acc+c)/tot); acc+=c;
-      s+=`<rect x="${x0}" y="${yy+1}" width="${w}" height="${Math.max(0,h-2)}" fill="${css('--f'+(k+1))}" rx="${k===3?0:0}" data-tip="${esc(tipTxt)}"/>`; });
-  });
-  const every = Math.max(1, Math.ceil(NP*48/iw));
-  HP.forEach((p,i)=>{ if((i%every && i!==NP-1) || (i!==NP-1 && NP-1-i<every)) return; s+=`<text x="${m.l+i*bw+bw/2}" y="${H-24}" text-anchor="middle" font-size="11" fill="${css('--ink-3')}">${p.lab.split('–')[1]}</text>`; });
-  s+=`<text x="${m.l}" y="${H-4}" font-size="10.5" fill="${css('--ink-3')}">Fim do período de referência</text></svg>`;
-  el.innerHTML=s;
-}
 
 // ---- unit selection ----
 const hUnit = document.getElementById('hUnit');
@@ -655,6 +611,14 @@ function unitInfo(u){
   const id=u.slice(2), v=varas.find(x=>x.id===id); return {kind:'v', v, sc:v.sc, name:v.nome, ser:HIST.v[id], raw:HIST.v[id].raw};
 }
 const lastIdx = arr=>{ for(let i=arr.length-1;i>=0;i--) if(arr[i]!=null) return i; return -1; };
+const prevIdx = arr=>{ for(let i=lastIdx(arr)-1;i>=0;i--) if(arr[i]!=null) return i; return -1; };
+const yearIdx = arr=>{ const i=lastIdx(arr)-4; return i>=0 && arr[i]!=null ? i : -1; };
+function cmpLines(arr){
+  const li=lastIdx(arr), p=prevIdx(arr), y=yearIdx(arr);
+  const row=(lab,i)=> i<0 ? `<div class="cmp-row"><div class="cmp-lab">${lab}</div><div class="muted">sem dados</div></div>` :
+    `<div class="cmp-row"><div class="cmp-lab">${lab} <span class="muted">· ${HP[i].lab} (${n3(arr[i])})</span></div><div class="cmp-val">${deltaTxt(arr[li],arr[i])}</div></div>`;
+  return `<div class="cmp">${row('Frente ao relatório anterior',p)}${row('Frente a um ano antes',y)}</div>`;
+}
 const firstIdx = arr=> arr.findIndex(v=>v!=null);
 function deltaTxt(a,b,lowerBetter=true){ if(a==null||b==null) return '<span class="muted">sem comparação</span>'; const d=a-b; const good = lowerBetter? d<0 : d>0; if(Math.abs(d)<0.0005) return 'estável'; return `<span style="color:${good?'var(--good)':'var(--bad)'}">${d<0?'▼':'▲'} ${n3(Math.abs(d))}</span> ${good?'(evolução)':'(involução)'}`; }
 
@@ -662,11 +626,11 @@ function renderHist(){
   hUnit.value = H_UNIT;
   const U = unitInfo(H_UNIT), mi = H_MI, mname = METRICS[mi];
   const vals = mget(U.ser, mi);
-  const li = lastIdx(vals), fi = firstIdx(vals), y1 = li-4;
+  const li = lastIdx(vals), fi = firstIdx(vals), y1 = prevIdx(vals);
   const best = vals.reduce((b,v,i)=> v!=null&&(b<0||v<vals[b])?i:b, -1), worst = vals.reduce((b,v,i)=> v!=null&&(b<0||v>vals[b])?i:b, -1);
   document.getElementById('hKpis').innerHTML = `
     <div class="card kpi"><div class="lab">${mname} · ${HP[li].lab}</div><div class="val">${n3(vals[li])}</div><div class="note">${U.name}</div></div>
-    <div class="card kpi"><div class="lab">Em 12 meses</div><div class="val" style="font-size:22px;margin-top:10px">${deltaTxt(vals[li], vals[y1])}</div><div class="note">frente a ${HP[y1].lab} (${n3(vals[y1])})</div></div>
+    <div class="card kpi"><div class="lab">Evolução / involução</div>${cmpLines(vals)}</div>
     <div class="card kpi"><div class="lab">Desde o início da série</div><div class="val" style="font-size:22px;margin-top:10px">${deltaTxt(vals[li], vals[fi])}</div><div class="note">frente a ${HP[fi].lab} (${n3(vals[fi])})</div></div>
     <div class="card kpi"><div class="lab">Menor e maior valor da série</div><div style="font-size:15px;font-weight:600;margin-top:8px">${HP[best].lab} <span class="muted" style="font-weight:400">${n3(vals[best])}</span></div><div style="font-size:15px;font-weight:600;margin-top:4px">${HP[worst].lab} <span class="muted" style="font-weight:400">${n3(vals[worst])}</span></div></div>`;
   // main chart
@@ -675,18 +639,9 @@ function renderHist(){
   if(U.kind==='v') series.push({name:'Média da SC '+U.sc, values:mget(HIST.sc[U.sc],mi), color:css('--bar'), width:2});
   if(U.kind!=='t15') series.push({name:'Média do TRT-15', values:mget(HIST.t15,mi), color:css('--ink-2'), width:1.75, dash:'6 4'});
   series.push({name:'Média nacional', values:mget(HIST.nat,mi), color:css('--ink-3'), width:1.75, dash:'2 3'});
-  if(mi===0) series.push({name:'Limite da 1ª faixa (quartil)', values:HIST.q.map(q=>q?q[0]:null), color:css('--f1'), width:1, dash:'1 3', opacity:.8});
-  if(mi===0) series.push({name:'Limite da 4ª faixa (quartil)', values:HIST.q.map(q=>q?q[2]:null), color:css('--f4'), width:1, dash:'1 3', opacity:.8});
   document.getElementById('hMainTitle').textContent = `${mname} — ${U.name}`;
   lineChart(document.getElementById('hMain'), {series, height:320, aria:`${mname} ao longo do tempo`});
   document.getElementById('hMainLeg').innerHTML = series.map(s=>legItem(s.color,s.name,s.dash?'dashed':null)).join('');
-  // faixas over time
-  let fxs, ftitle;
-  if(U.kind==='v'){ fxs = U.ser.f.map(f=> f? [0,0,0,0].map((_,k)=>k===f-1?1:0) : null); ftitle='Faixa da vara em cada período'; }
-  else { fxs = U.fx; ftitle = `Varas ${U.kind==='t15'?'do TRT-15':'da SC'} por faixa do IGEST`; }
-  document.getElementById('hFxTitle').textContent = ftitle;
-  document.getElementById('hFxSub').textContent = 'Faixas = quartis nacionais do IGEST em cada período';
-  fxChart(document.getElementById('hFx'), fxs);
   // small multiples
   document.getElementById('hSmallSub').textContent = `${U.name} · mesma escala de 0 a 1 em todos · traço = média nacional`;
   const sm = document.getElementById('hSmall');
@@ -736,7 +691,7 @@ function renderMesos(){
   const t15 = trts.find(t=>t.trt===15); const tv = t=> mi===0?t.igest:t.mesos[mi-1];
   const t15rk = 1+trts.filter(t=>tv(t)<tv(t15)).length;
   const fx=[0,0,0,0]; varas.forEach(v=>fx[fOf(v)-1]++);
-  const li = lastIdx(HIST.t15.ig), pi = li-4, plab = HP[pi].lab;
+  const li = lastIdx(HIST.t15.ig), pi = prevIdx(HIST.t15.ig), plab = HP[pi].lab;
   const hs = HIST.sc[HL], scObj = scs.find(s=>s.sc===HL), scv = scVal(scObj);
   const scPos = 1+scs.filter(s=>scVal(s)<scv).length;
   const sorted = varas.slice().sort((a,b)=>val(a)-val(b));
@@ -747,27 +702,27 @@ function renderMesos(){
   let varaCard;
   if(MESO_VARA){
     const v = varas.find(x=>x.id===MESO_VARA), hv = HIST.v[v.id];
-    varaCard = `<div class="card kpi" style="border-color:var(--hl-line)"><div class="lab">${mname} · ${esc(v.nome)}</div><div class="val">${n3(val(v))} ${chip(fOf(v))}</div><div class="note">Média da SC: ${n3(scv)} · média do TRT-15: ${n3(t15v)}</div><div class="note" style="margin-top:6px">Em 12 meses: ${deltaTxt(mget(hv,mi)[li], mget(hv,mi)[pi])}</div></div>`;
+    varaCard = `<div class="card kpi" style="border-color:var(--hl-line)"><div class="lab">${mname} · ${esc(v.nome)}</div><div class="val">${n3(val(v))}</div><div class="note">Média da SC: ${n3(scv)} · média do TRT-15: ${n3(t15v)}</div>${cmpLines(mget(hv,mi))}</div>`;
   } else {
-    varaCard = `<div class="card kpi"><div class="lab">Varas da SC por faixa · ${mname}</div><div class="val" style="display:flex;gap:6px;flex-wrap:wrap;font-size:20px;margin-top:10px">${chips(scFx)}</div><div class="note">Escolha uma vara no filtro acima para ver o resultado dela</div></div>`;
+    varaCard = `<div class="card kpi"><div class="lab">Menor e maior valor na SC · ${mname}</div><div style="font-size:15px;font-weight:600;margin-top:8px">${esc(scVs[0].nome)} <span class="muted" style="font-weight:400">${n3(val(scVs[0]))}</span></div><div style="font-size:15px;font-weight:600;margin-top:4px">${esc(scVs[scVs.length-1].nome)} <span class="muted" style="font-weight:400">${n3(val(scVs[scVs.length-1]))}</span></div><div class="note">Escolha uma vara no filtro acima para ver o resultado dela</div></div>`;
   }
   document.getElementById('mesoKpis').innerHTML = `
-    <div class="card kpi"><div class="lab">${mname} · média do TRT-15</div><div class="val">${n3(t15v)}</div><div class="note">Média nacional: ${n3(natv)}</div></div>
-    <div class="card kpi"><div class="lab">TRT-15 em 12 meses</div><div class="val" style="font-size:22px;margin-top:10px">${deltaTxt(t15v, mget(HIST.t15,mi)[pi])}</div><div class="note">frente a ${plab} (${n3(mget(HIST.t15,mi)[pi])})</div></div>
-    <div class="card kpi"><div class="lab">Varas do TRT-15 por faixa</div><div class="val" style="display:flex;gap:6px;flex-wrap:wrap;font-size:20px;margin-top:10px">${chips(fx)}</div><div class="note">Limites nacionais: ${q.map(n3).join(' · ')}</div></div>
+    <div class="card kpi"><div class="lab">${mname} · média do TRT-15</div><div class="val">${n3(t15v)}</div><div class="note">Diferença para a média nacional: ${t15v-natv>0?'+':''}${n3(t15v-natv)}</div></div>
+    <div class="card kpi"><div class="lab">TRT-15 · evolução / involução</div>${cmpLines(mget(HIST.t15,mi))}</div>
+    <div class="card kpi"><div class="lab">${mname} · média nacional</div><div class="val">${n3(natv)}</div><div class="note">Média das 1.573 varas do país</div></div>
     <div class="card kpi"><div class="lab">${mname} · SC ${esc(HL)}</div><div class="val">${n3(scv)}</div><div class="note">Média do TRT-15: ${n3(t15v)}</div></div>
-    <div class="card kpi"><div class="lab">SC ${esc(HL)} em 12 meses</div><div class="val" style="font-size:22px;margin-top:10px">${deltaTxt(scv, mget(hs,mi)[pi])}</div><div class="note">frente a ${plab} (${n3(mget(hs,mi)[pi])})</div></div>
+    <div class="card kpi"><div class="lab">SC ${esc(HL)} · evolução / involução</div>${cmpLines(mget(hs,mi))}</div>
     ${varaCard}`;
-  // SC ranking
+  // SC bars
   document.getElementById('mesoBarsTitle').textContent = `${mname} por Secretaria Conjunta`;
   const rows = scs.map(s=>({s, v: scVal(s)})).sort((a,b)=>a.v-b.v);
   const max = Math.max(...rows.map(r=>r.v), t15v)*1.08;
-  barList(document.getElementById('mesoBars'), rows.map((r,i)=>({label:r.s.sc, v:r.v, hl:r.s.sc===HL, tip:`<b>SC ${r.s.sc}</b><br>${mname}: ${n3(r.v)}<br>Faixa equivalente: ${faixaOf(r.v,q)}ª`})), max, t15v);
+  barList(document.getElementById('mesoBars'), rows.map((r,i)=>({label:r.s.sc, v:r.v, hl:r.s.sc===HL, tip:`<b>SC ${r.s.sc}</b><br>${mname}: ${n3(r.v)}`})), max, t15v);
   // varas da SC
   document.getElementById('mesoScVarasTitle').textContent = `${mname} das varas da SC ${HL}`;
   const mx2 = Math.max(...scVs.map(val), t15v)*1.08||1;
   const el2 = document.getElementById('mesoScVaras');
-  el2.innerHTML = scVs.map((v,i)=>`<div class="bar-row ${v.id===MESO_VARA?'hl':''}" data-id="${v.id}" style="cursor:pointer" data-tip="${esc(`<b>${v.nome}</b><br>${mname}: ${n3(val(v))} · ${fOf(v)}ª faixa`)}"><div class="nm">${esc(v.nome)}</div><div class="track"><div class="b" style="width:${val(v)/mx2*100}%;background:var(--f${fOf(v)})${v.id===MESO_VARA?';box-shadow:0 0 0 2px var(--hl-line)':''}"></div><div class="tick" style="left:${t15v/mx2*100}%"></div></div><div class="v">${n3(val(v))}</div></div>`).join('');
+  el2.innerHTML = scVs.map((v,i)=>`<div class="bar-row ${v.id===MESO_VARA?'hl':''}" data-id="${v.id}" style="cursor:pointer" data-tip="${esc(`<b>${v.nome}</b><br>${mname}: ${n3(val(v))}`)}"><div class="nm">${esc(v.nome)}</div><div class="track"><div class="b" style="width:${val(v)/mx2*100}%;background:var(--bar);--x:var(--f${fOf(v)})${v.id===MESO_VARA?';box-shadow:0 0 0 2px var(--hl-line)':''}"></div><div class="tick" style="left:${t15v/mx2*100}%"></div></div><div class="v">${n3(val(v))}</div></div>`).join('');
   el2.querySelectorAll('[data-id]').forEach(r=>r.onclick=()=>{ MESO_VARA = MESO_VARA===r.dataset.id?'':r.dataset.id; renderMesos(); });
   // micro table
   const mt = document.getElementById('mesoMicro');
@@ -785,9 +740,9 @@ function renderMesos(){
     mt.innerHTML = `<thead><tr><th class="l">Microindicador</th><th>Peso</th><th class="l">Polaridade</th><th>Bruto TRT-15</th><th>Nota TRT-15</th><th>Bruto SC</th><th>Nota SC</th>${sv?`<th>Bruto vara</th><th>Nota vara</th>`:''}</tr></thead><tbody>${MICRO[mi].map(([k,w])=>`<tr style="cursor:default"><td class="l" style="white-space:normal;min-width:220px">${k} · ${IND[k][0]}${IND[k][1]?` <span class="muted">(${IND[k][1]})</span>`:''}</td><td>${nf(w,1)}</td><td class="l muted">${POL[k]?'positiva':'negativa'}</td><td>${nf(avg(varas,k),dec(k))}</td><td>${n3(avg(varas,'P'+k))}</td><td>${nf(avg(hv,k),dec(k))}</td><td>${n3(avg(hv,'P'+k))}</td>${sv?`<td><b>${nf(sv[k],dec(k))}</b></td><td><b>${n3(sv['P'+k])}</b></td>`:''}</tr>`).join('')}</tbody>`;
   }
   const bl = (el, list)=>{ const mx=Math.max(...list.map(val))*1.08||1;
-    el.innerHTML = list.map(v=>`<div class="bar-row ${v.sc===HL?'hl':''}" data-id="${v.id}" style="cursor:pointer" data-tip="${esc(`<b>${v.nome}</b><br>SC ${v.sc}<br>${mname}: ${n3(val(v))} · ${fOf(v)}ª faixa`)}"><div class="nm">${esc(v.nome)}</div><div class="track"><div class="b" style="width:${val(v)/mx*100}%;background:var(--f${fOf(v)})"></div></div><div class="v">${n3(val(v))}</div></div>`).join('');
+    el.innerHTML = list.map(v=>`<div class="bar-row ${v.sc===HL?'hl':''}" data-id="${v.id}" style="cursor:pointer" data-tip="${esc(`<b>${v.nome}</b><br>SC ${v.sc}<br>${mname}: ${n3(val(v))}`)}"><div class="nm">${esc(v.nome)}</div><div class="track"><div class="b" style="width:${val(v)/mx*100}%;background:var(--bar);--x:var(--f${fOf(v)})"></div></div><div class="v">${n3(val(v))}</div></div>`).join('');
     el.querySelectorAll('[data-id]').forEach(r=>r.onclick=()=>openVara(r.dataset.id)); };
-  document.getElementById('mesoTopSub').textContent = `Ordem crescente de ${mname} · cor = faixa nacional · varas da SC em destaque em negrito`;
+  document.getElementById('mesoTopSub').textContent = `Ordem crescente de ${mname} · varas da SC em destaque em negrito`;
   bl(document.getElementById('mesoTop'), sorted.slice(0,10));
   bl(document.getElementById('mesoBot'), sorted.slice(-10).reverse());
 }
@@ -804,7 +759,6 @@ function drawerHist(id){
 document.getElementById('hN').textContent = HP.length;
 document.getElementById('hFirst').textContent = HP[0].lab;
 document.getElementById('hLast').textContent = HP[NP-1].lab;
-document.getElementById('fxLegend3').innerHTML = fxLeg;
 let rT; addEventListener('resize',()=>{clearTimeout(rT); rT=setTimeout(()=>{renderHist();},150);});
 matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{renderHist();});
 
